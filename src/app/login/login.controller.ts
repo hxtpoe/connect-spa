@@ -3,20 +3,13 @@ module main {
 
     angular.module('connect')
         .controller('LoginCtrl', function ($scope, $auth) {
-
-            $scope.click = function () {
-                console.log("$auth.getPayload()", $auth.getPayload());
-
-            }
-
-
             $scope.authenticate = function(provider) {
                 $auth.authenticate(provider)
                     .then(function() {
                         console.log("You have successfully logged in");
                     })
                     .catch(function(response) {
-                        console.log("xxx", response);
+                        console.log("authenticate catch", response);
                     });
             };
             $scope.logout = function() {
@@ -25,7 +18,7 @@ module main {
                         console.log("logout");
                     })
                     .catch(function(response) {
-                        console.log("yy", response);
+                        console.log("logout catch", response);
                     });
             };
         });
