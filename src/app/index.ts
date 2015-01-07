@@ -3,11 +3,11 @@
 module app {
     'use strict';
 
-    angular.module('connect', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'satellizer'])
+    angular.module('connect', ['ngAnimate', 'mgcrea.ngStrap', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'satellizer'])
 
         .config(function($authProvider) {
             $authProvider.facebook({
-                url: 'http://dev.ioki.com.pl/login.php',
+                url: 'http://localhost:9000/auth/facebook',
                 clientId: '781458691925425'
             });
         })
