@@ -1,4 +1,4 @@
-module main {
+module login {
     'use strict';
 
     angular.module('connect')

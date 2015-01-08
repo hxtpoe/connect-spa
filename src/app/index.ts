@@ -1,5 +1,4 @@
 /// <reference path="../../typings/tsd.d.ts" />
-
 module app {
     'use strict';
 

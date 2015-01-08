@@ -2,8 +2,13 @@
 
 var gulp = require('gulp');
 
-var tsc = require('gulp-typescript-compiler');
-var typescript = require('gulp-tsc');
+var ts = require('gulp-typescript');
+var eventStream = require('event-stream');
+
+var tsProject = ts.createProject({
+    declarationFiles: true,
+    noExternalResolve: false
+});
 
 var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -23,12 +28,14 @@ gulp.task('styles', ['wiredep'], function () {
         .pipe($.size());
 });
 
-gulp.task('scripts', function () {
-    return gulp.src('src/{app,components}/**/*.ts')
-        .pipe(typescript(
-            {tmpDir:'.tmp'}
-        ))
-        .pipe(gulp.dest('.tmp/'));
+gulp.task('scripts', function() {
+    var tsResult = gulp.src('src/{app,components}/**/*.ts')
+        .pipe(ts(tsProject));
+
+    return eventStream.merge( // Merge the two output streams, so this task is finished when the IO of both operations are done.
+        tsResult.dts.pipe(gulp.dest('.tmp/definitions')),
+        tsResult.js.pipe(gulp.dest('.tmp/js'))
+    );
 });
 
 gulp.task('partials', function () {
