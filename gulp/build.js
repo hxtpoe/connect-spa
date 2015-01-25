@@ -53,7 +53,7 @@ function compileAppScripts() {
     tsProject: tsProject,
     inPath: 'src/app/index.ts',
     outDefPath: '.tmp/definitions/app',
-    outJsPath: '.tmp/app',
+    outJsPath: '.tmp/js',
     outJsFile: 'index.js'
   }
   return compileTS(opt);
@@ -158,7 +158,13 @@ gulp.task('clean', function (done) {
     $.del(['.tmp', 'dist'], done);
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'misc']);
+gulp.task('extras', function () {
+  return gulp.src(
+    ['app/**.*', '!app/*.html', '!app/*.ts', '!app/*.config', '!app/*.csproj*'], { dot: true })
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('build', ['extras', 'html', 'images', 'fonts', 'misc']);
 
 gulp.task('watch', ['scripts', 'styles'], function () {
   gulp.watch('src/{app,components}/**/*.scss', ['styles']);
