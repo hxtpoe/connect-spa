@@ -15,8 +15,7 @@ gulp.task('test', function() {
   });
 
   var testFiles = bowerDeps.js.concat([
-    'src/{app,components}/**/*.js',
-    'test/unit/**/*.js'
+    '.test/{app,components}/**/*..test.js'
   ]);
 
   return gulp.src(testFiles)
@@ -26,6 +25,8 @@ gulp.task('test', function() {
     }))
     .on('error', function(err) {
       // Make sure failed tests cause gulp to exit non-zero
+          console.log(err);
       throw err;
+
     });
 });

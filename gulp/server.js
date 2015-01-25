@@ -8,7 +8,7 @@ var browserSync = require('browser-sync');
 
 var middleware = require('./proxy');
 
-var typescript = require('gulp-tsc');
+var ts = require('gulp-typescript');
 
 function browserSyncInit(baseDir, files, browser) {
   browser = browser === undefined ? 'default' : browser;
@@ -33,12 +33,6 @@ function browserSyncInit(baseDir, files, browser) {
   });
 
 }
-
-gulp.task('tsc', function() {
-    return gulp.src(['src/**/*.ts'])
-        .pipe(typescript({tmpDir:'.tmp'}))
-        .pipe(gulp.dest('.tmp/js'));
-});
 
 gulp.task('serve', ['watch'], function () {
   browserSyncInit([

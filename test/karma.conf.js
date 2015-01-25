@@ -3,7 +3,7 @@
 module.exports = function (config) {
 
     config.set({
-        basePath: '..', //!\\ Ignored through gulp-karma //!\\
+//        basePath: '..', //!\\ Ignored through gulp-karma //!\\
 
         files: [ //!\\ Ignored through gulp-karma //!\\
             'src/bower_components/angular/angular.js',
@@ -13,18 +13,20 @@ module.exports = function (config) {
             'test/unit/** /*.js'
         ],
 
-        autoWatch: false,
+//        autoWatch: false,
 
         frameworks: ['jasmine'],
 
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
 
         plugins: [
             'karma-phantomjs-launcher',
+            'karma-chrome-launcher',
             'karma-jasmine'
         ],
+        showStack: false,
         preprocessors: {
-            'src/{app,components}/**/*.ts': ['typescript']
+            'src/{app,components}/**/*.ts': ['gulp-typescript']
         },
         typescriptPreprocessor: {
             // options passed to the typescript compiler

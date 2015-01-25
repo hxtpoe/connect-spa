@@ -2,8 +2,14 @@
 
 var gulp = require('gulp');
 
-var tsc = require('gulp-typescript-compiler');
-var typescript = require('gulp-tsc');
+var ts = require('gulp-typescript');
+var eventStream = require('event-stream');
+
+var tsProject = ts.createProject({
+  declarationFiles: true,
+  noExternalResolve: false,
+  sortOutput: true
+});
 
 var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -23,13 +29,49 @@ gulp.task('styles', ['wiredep'], function () {
         .pipe($.size());
 });
 
-gulp.task('scripts', function () {
-    return gulp.src('src/{app,components}/**/*.ts')
-        .pipe(typescript(
-            {tmpDir:'.tmp'}
-        ))
-        .pipe(gulp.dest('.tmp/'));
+gulp.task('scripts', function() {
+    var tsResult = gulp.src('src/{app,components}/**/*.ts')
+        .pipe(ts(tsProject));
+
+    return eventStream.merge( // Merge the two output streams, so this task is finished when the IO of both operations are done.
+        tsResult.dts.pipe(gulp.dest('.tmp/definitions')),
+        tsResult.js.pipe(gulp.dest('.tmp/js'))
+    );
 });
+
+gulp.task('scripts:app', function () {
+  return compileAppScripts();
+});
+
+function compileAppScripts() {
+  var tsProject = $.typescript.createProject({
+    declarationFiles: true,
+    noExternalResolve: false,
+    sortOutput: true
+  });
+  var opt = {
+    tsProject: tsProject,
+    inPath: 'src/app/index.ts',
+    outDefPath: '.tmp/definitions/app',
+    outJsPath: '.tmp/app',
+    outJsFile: 'index.js'
+  }
+  return compileTS(opt);
+}
+
+function compileTS(opt) {
+  var tsResult = gulp.src(opt.inPath)
+    .pipe($.sourcemaps.init()) // sourcemaps will be generated
+    .pipe($.typescript(opt.tsProject, undefined, $.typescript.reporter.fullReporter(true)));
+
+  return eventStream.merge( // this task is finished when the IO of both operations are done
+    tsResult.dts.pipe(gulp.dest(opt.outDefPath)),
+    tsResult.js
+      .pipe($.concatSourcemap(opt.outJsFile))
+      .pipe($.sourcemaps.write()) // sourcemaps are added to the .js file
+      .pipe(gulp.dest(opt.outJsPath))
+  );
+}
 
 gulp.task('partials', function () {
     return gulp.src('src/{app,components}/**/*.html')
@@ -106,8 +148,23 @@ gulp.task('misc', function () {
         .pipe($.size());
 });
 
+gulp.task('serve', ['scripts:app'], function () {
+  runSequence('connect', function () {
+    require('opn')('http://localhost:9000');
+  });
+});
+
 gulp.task('clean', function (done) {
     $.del(['.tmp', 'dist'], done);
 });
 
 gulp.task('build', ['html', 'images', 'fonts', 'misc']);
+
+gulp.task('watch', ['scripts', 'styles'], function () {
+  gulp.watch('src/{app,components}/**/*.scss', ['styles']);
+  gulp.watch('src/{app,components}/login/**/*.ts', ['scripts']);
+  gulp.watch('src/assets/images/**/*', ['images']);
+  gulp.watch('bower.json', ['wiredep']);
+});
+
+
