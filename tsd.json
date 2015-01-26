@@ -10,6 +10,9 @@
     },
     "jquery/jquery.d.ts": {
       "commit": "4abbdff87f05616cfc421e0bf46c54a0ffdc06ce"
+    },
+    "restangular/restangular.d.ts": {
+      "commit": "b3324f69165309a3ea2bd02fd10e97841bf07c83"
     }
   }
 }

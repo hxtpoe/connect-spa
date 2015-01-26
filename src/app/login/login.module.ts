@@ -9,6 +9,6 @@ module login {
   var moduleName = 'loginModule',
     loginModule = angular.module(moduleName, [])
       .controller('LoginCtrl', LoginCtrl)
-      .service('LoginService', ["$auth", function($auth) {return new LoginService($auth);}])
+      .service('LoginService', LoginService)
     ;
 }
