@@ -1,3 +1,14 @@
 <div class="container">
-  <h1 ng-click="wallCtrl.test()">wall!</h1>
+  <form class="form-inline">
+    <div class="form-group">
+      <input type="text" class="form-control" ng-model="wallCtrl.newTweet" placeholder="Napisz coś!"/>
+      <button ng-class="{'disabled' : !wallCtrl.newTweet}" class="btn btn-success btn-sm" ng-click="wallCtrl.publishTweet()">Publikuj!</button>
+    </div>
+  </form>
+  <div>
+    <div ng-repeat="element in wallCtrl.array" class="well well-lg">
+      <span class="label label-primary">{{::element.author }}</span>
+      {{::element.message }}
+    </div>
+  </div>
 </div>

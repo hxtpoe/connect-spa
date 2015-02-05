@@ -24,7 +24,10 @@ module app {
     .config(function ($authProvider) {
       $authProvider.facebook({
         url: 'http://localhost:9000/auth/facebook',
-        clientId: '781458691925425'
+        clientId: '781458691925425',
+        scope: 'email, user_relationships, user_status, user_about_me, user_friends',
+        scopeDelimiter: ',',
+        requiredUrlParams: ['scope']
       });
     })
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -48,6 +51,5 @@ module app {
     })
     .config(function (RestangularProvider: restangular.IProvider) {
       RestangularProvider.setBaseUrl('http://localhost:9000/api/');
-      RestangularProvider.setExtraFields(['name']);
     });
 }

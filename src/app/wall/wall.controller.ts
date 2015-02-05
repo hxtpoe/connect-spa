@@ -3,23 +3,41 @@ module wall {
   'use strict';
 
   export class WallCtrl {
-    // $inject annotation.
-    // It provides $injector with information about dependencies to be injected into constructor
-    // it is better to have it close to the constructor, because the parameters must match in count and type.
-    // See http://docs.angularjs.org/guide/di
     public static $inject = [
       '$scope',
-      'WallDataService'
+      'WallDataService',
+      '$auth'
     ];
 
-    // dependencies are injected via AngularJS $injector
-    // controller's name is registered in Application.ts and specified from ng-controller attribute in index.html
-    constructor(private $scope, private WallDataService) {
-      console.log("wallCtrl");
+    private tweet: String;
+    private a;
+
+    constructor(private $scope, private WallDataService:wall.WallDataService, private $auth) {
+      this.WallDataService.getByName().then((data) => {
+        this.a = data
+      });
     }
 
-    test() {
-      console.log("xxx", this.WallDataService.getLatests());
+    get newTweet():String {
+      return this.tweet;
+    }
+
+    set newTweet(value:String) {
+      this.tweet = value;
+    }
+
+    get array() {
+      return this.a;
+    }
+
+    publishTweet() {
+
+      this.WallDataService.add({message: this.newTweet, author: this.$auth.getPayload().sub}).then(
+        () => {
+          this.a.unshift({message: this.newTweet, author: this.$auth.getPayload().sub});
+          this.newTweet = '';
+        }
+      );
     }
   }
 }

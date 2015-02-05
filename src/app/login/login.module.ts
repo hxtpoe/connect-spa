@@ -11,4 +11,4 @@ module login {
       .controller('LoginCtrl', LoginCtrl)
       .service('LoginService', LoginService)
     ;
-}
+  }

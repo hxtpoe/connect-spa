@@ -6,16 +6,18 @@ module login {
   export class LoginService {
 
     public static $inject = [
-      '$auth'
+      '$auth',
+      'Restangular'
     ];
 
-    constructor (private $auth) {
+    constructor (private $auth, private Restangular) {
     }
 
     login(provider: String) {
+      var self = this;
       this.$auth.authenticate(provider)
-        .then(function () {
-          console.log("You have successfully logged in!");
+        .then(function (response) {
+          self.Restangular.setDefaultHeaders({token: response.data.token});
         })
         .catch(function (response) {
           console.log("authenticate exception", response);
