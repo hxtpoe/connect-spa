@@ -17,7 +17,7 @@ module login {
     };
 
     log = function () {
-      console.log('user from token', this.loginService.getUser())
+      console.log('user from token', this.loginService.getUserId());
     };
 
     logout = function () {

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="add-post-container row">
+    <form novalidate class="form-inline">
+      <div class="form-group">
+        <input type="text" class="form-control" required ng-model="wallCtrl.message" placeholder="Napisz coś!"/>
+        <button ng-class="{'disabled' : !wallCtrl.message}" class="btn btn-success"
+                ng-click="wallCtrl.publish()">Opublikuj
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="timeline-container row">
+    <div ng-repeat="element in wallCtrl.getPosts" class="well well-lg">
+      {{::element.userId }}
+      {{::element.message }}
+      {{:: element.createdAt | date : "shortDate" }} {{:: element.createdAt | date : "mediumTime" }}
+
+    </div>
+  </div>
+  <div class="next-page-container row text-center">
+    <button ng-class="{'disabled' : wallCtrl.endOfTimeline}" class="btn btn-default"
+            ng-click="wallCtrl.getNextPage()">poprzednie
+    </button>
+    <span ng-if="wallCtrl.endOfTimeline">
+    To jest już koniec, nie ma już nic!
+  </span>
+  </div>
+</div>

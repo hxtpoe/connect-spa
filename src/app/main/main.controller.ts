@@ -14,6 +14,7 @@ module main {
     // dependencies are injected via AngularJS $injector
     // controller's name is registered in Application.ts and specified from ng-controller attribute in index.html
     constructor(private $scope) {
+      var x = 1;
       console.log("mainCTRL");
     }
   }
