@@ -22,6 +22,9 @@ function browserSyncInit(baseDir, files, browser) {
     };
   }
 
+  console.log(files);
+  console.log(baseDir);
+
   browserSync.instance = browserSync.init(files, {
     startPath: '/index.html',
     server: {
@@ -36,14 +39,17 @@ function browserSyncInit(baseDir, files, browser) {
 
 gulp.task('serve', ['watch'], function () {
   browserSyncInit([
-    'src',
-    '.tmp'
+    'src/app',
+    '.tmp',
+    'src'
   ], [
     '.tmp/{app,components}/**/*.css',
     'src/assets/images/**/*',
     'src/*.html',
     'src/{app,components}/**/*.html',
-    'src/{app,components}/**/*.js'
+    'src/{app,components}/**/*.js',
+    'src/{app,components}/**/*.ts',
+    'src/{app,components}/**/*.js.map'
   ]);
 });
 

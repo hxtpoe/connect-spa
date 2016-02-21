@@ -1,4 +1,5 @@
-///<reference path='../_all.ts' />
+///<reference path='_all.ts' />
+///<reference path='../login/login.service.ts' />
 
 module wall {
   'use strict';
@@ -10,14 +11,14 @@ module wall {
     private create;
 
     public static $inject = [
-      "Restangular",
-      "$auth"
+      'Restangular',
+      '$auth',
+      'LoginService'
     ];
 
-    constructor (private restangular, private $auth) {
-      this.tweet = restangular.one('tweet/2');
-      this.allTweets = restangular.all('tweet/user/' + $auth.getPayload().sub);
-      this.create = restangular.all('tweet');
+    constructor (private restangular, private $auth, public loginService: login.LoginService) {
+      this.allTweets = restangular.one('user/' + this.loginService.getUserId() + '/timeline');
+      this.create = restangular.all('user/' + this.loginService.getUserId() + '/posts');
     }
 
     getLatests() {
@@ -25,7 +26,7 @@ module wall {
     }
 
     getByName() {
-      return this.allTweets.getList();
+      return this.allTweets.get();
     }
 
     add(element) {

@@ -34,8 +34,12 @@ module login {
         });
     }
 
-    getUser():String {
+    getUser() {
       return this.$auth.getPayload();
+    }
+
+    getUserId() {
+      return this.$auth.getPayload().sub.substring(6);
     }
   }
 }

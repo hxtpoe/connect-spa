@@ -4,6 +4,7 @@ var gulp = require('gulp');
 
 var ts = require('gulp-typescript');
 var eventStream = require('event-stream');
+var sass = require('gulp-ruby-sass');
 
 var tsProject = ts.createProject({
   declarationFiles: true,
@@ -22,11 +23,10 @@ function handleError(err) {
 }
 
 gulp.task('styles', ['wiredep'], function () {
-    return gulp.src('src/{app,components}/**/*.scss')
-        .pipe($.rubySass({style: 'expanded'}))
+    return sass('src/app/**/*.scss')
         .on('error', handleError)
         .pipe($.autoprefixer('last 1 version'))
-        .pipe(gulp.dest('.tmp'))
+        .pipe(gulp.dest('.tmp/'))
         .pipe($.size());
 });
 

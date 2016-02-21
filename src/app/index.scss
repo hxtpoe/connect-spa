@@ -27,7 +27,7 @@ a {
   margin-bottom: 20px;
   background-color: #222;
 
-  &>a {
+  & > a {
     float: left;
     color: lightgrey;
     padding: 15px 15px;
@@ -68,19 +68,8 @@ a {
   text-align: center;
 }
 
-.btn {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 1px solid transparent;
-  color: white;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 6px;
+.btn:hover, .btn:focus, .btn:active, .btn {
+  outline: none;
 }
 
 .col {
@@ -113,4 +102,15 @@ a {
 
 hr {
   clear: both;
+}
+
+.add-post-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+
+.next-page-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }

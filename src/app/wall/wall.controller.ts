@@ -6,36 +6,72 @@ module wall {
     public static $inject = [
       '$scope',
       'WallDataService',
-      '$auth'
+      '$auth',
+      '$window',
+      '$http'
     ];
 
-    private tweet: String;
-    private a;
+    private tweet:String;
+    private posts:Array<Object>;
+    private nextPage:String;
+    private endOfTimeline:Boolean = false;
 
-    constructor(private $scope, private WallDataService:wall.WallDataService, private $auth) {
+    constructor(private $scope, private WallDataService, private $auth, private $window, private $http, private $filter) {
       this.WallDataService.getByName().then((data) => {
-        this.a = data
+        this.posts = data.posts;
+        this.posts.forEach((post) => {
+          post.createdAt = new Date(post.createdAt).getTime();
+        });
+        this.nextPage = data.nextPage;
+      });
+
+      //angular.element(this.$window).scroll(() => {
+      //  if (angular.element(this.$window).scrollTop() > document.body.offsetHeight - window.innerHeight - 50) {
+      //    $http.get('http://localhost:9000' + this.nextPage).then(
+      //      (data) => {
+      //        this.nextPage = data.data.nextPage;
+      //        this.posts = this.posts.concat(data.data.posts);
+      //      }
+      //    );
+      //  }
+      //})
+    }
+
+    getNextPage() {
+      this.$http.get('http://localhost:9000' + this.nextPage).then(
+        (data) => {
+          this.nextPage = data.data.nextPage;
+          this.posts = this.posts.concat(data.data.posts);
+          this.posts.forEach((post) => {
+            post.createdAt = new Date(post.createdAt).getTime();
+          });
+
+
+        }
+      ).catch((data) => {
+        if (data.status == 404) {
+          this.endOfTimeline = true;
+        }
       });
     }
 
-    get newTweet():String {
+    get message():String {
       return this.tweet;
     }
 
-    set newTweet(value:String) {
+    set message(value:String) {
       this.tweet = value;
     }
 
-    get array() {
-      return this.a;
+    get getPosts() {
+      return this.posts;
     }
 
-    publishTweet() {
-
-      this.WallDataService.add({message: this.newTweet, author: this.$auth.getPayload().sub}).then(
+    publish() {
+      this.WallDataService.add({message: this.message}).then(
         () => {
-          this.a.unshift({message: this.newTweet, author: this.$auth.getPayload().sub});
-          this.newTweet = '';
+          this.posts.unshift({message: this.message, userId: this.$auth.getPayload().sub});
+          this.message = null;
         }
       );
     }
