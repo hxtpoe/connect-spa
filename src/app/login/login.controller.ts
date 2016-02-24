@@ -10,14 +10,18 @@ module login {
       'LoginService'
     ];
 
-    constructor(private $scope, public loginService:LoginService) {}
+    constructor(private $scope, public loginService:LoginService) {
+    }
 
     authenticate = function (provider) {
-      this.loginService.login(provider);
-    };
-
-    log = function () {
-      console.log('user from token', this.loginService.getUserId());
+      this.loginService.login(provider).
+      catch((response) => {
+        console.log("authenticate exception", response);
+      }).
+      then(() => {
+          this.$scope.$parent.$hide();
+        }
+      );
     };
 
     logout = function () {

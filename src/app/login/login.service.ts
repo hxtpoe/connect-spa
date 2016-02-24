@@ -10,18 +10,16 @@ module login {
       'Restangular'
     ];
 
-    constructor (private $auth, private Restangular) {
+    constructor(private $auth, private Restangular) {
     }
 
-    login(provider: String) {
+    login(provider:String) {
       var self = this;
-      this.$auth.authenticate(provider)
-        .then(function (response) {
+      return this.$auth.authenticate(provider)
+        .then((response) => {
+          console.log("this.$auth.isAuthenticated()", this.$auth.isAuthenticated());
           self.Restangular.setDefaultHeaders({token: response.data.token});
         })
-        .catch(function (response) {
-          console.log("authenticate exception", response);
-        });
     }
 
     logout() {

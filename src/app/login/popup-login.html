@@ -1,0 +1,19 @@
+<div class="modal popup-login" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span
+          aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Login / Rejestracja</h4>
+      </div>
+      <div class="modal-body popup-login__body text-center">
+        <img ng-click="LoginCtrl.authenticate('facebook')" class="clickable" width="270" src="assets/images/buttons.png"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -12,7 +12,7 @@ module wall {
     ];
 
     private tweet:String;
-    private posts:Array<Object>;
+    private posts:Array<Object> = [];
     private nextPage:String;
     private endOfTimeline:Boolean = false;
 
@@ -24,17 +24,6 @@ module wall {
         });
         this.nextPage = data.nextPage;
       });
-
-      //angular.element(this.$window).scroll(() => {
-      //  if (angular.element(this.$window).scrollTop() > document.body.offsetHeight - window.innerHeight - 50) {
-      //    $http.get('http://localhost:9000' + this.nextPage).then(
-      //      (data) => {
-      //        this.nextPage = data.data.nextPage;
-      //        this.posts = this.posts.concat(data.data.posts);
-      //      }
-      //    );
-      //  }
-      //})
     }
 
     getNextPage() {
@@ -70,6 +59,7 @@ module wall {
     publish() {
       this.WallDataService.add({message: this.message}).then(
         () => {
+          console.log("this.posts", this.posts);
           this.posts.unshift({message: this.message, userId: this.$auth.getPayload().sub});
           this.message = null;
         }
