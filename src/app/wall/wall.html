@@ -12,10 +12,10 @@
 
   <div class="timeline-container row">
     <div ng-repeat="element in wallCtrl.getPosts" class="well well-lg">
-      {{::element.userId }}
-      {{::element.message }}
-      {{:: element.createdAt | date : "shortDate" }} {{:: element.createdAt | date : "mediumTime" }}
+      <p>{{::element.userId }} {{:: element.createdAt | date : "shortDate" }} {{:: element.createdAt | date :
+        "mediumTime" }}</p>
 
+      <p>{{::element.message }}</p>
     </div>
   </div>
   <div class="next-page-container row text-center">

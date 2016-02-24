@@ -96,6 +96,10 @@ a {
   }
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 .pull-right {
   float: right;
 }
@@ -109,8 +113,13 @@ hr {
   margin-bottom: 40px;
 }
 
-
 .next-page-container {
   margin-top: 40px;
   margin-bottom: 40px;
+}
+
+.popup-login {
+  &__body {
+    padding: 50px;
+  }
 }
