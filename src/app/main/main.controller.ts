@@ -8,7 +8,7 @@ module main {
       '$http'
     ];
 
-    public numberOfUsers:Int;
+    public numberOfUsers;
 
     constructor(private $scope, private $http) {
       this.init();

@@ -2,15 +2,11 @@
 module layout {
   export function TopNavDrv($auth):ng.IDirective {
     return {
-      //scope: {
-      //  isAuth: false
-      //},
-      templateUrl: 'app/layout/layout.html',
+      templateUrl: 'app/layout/top-menu.html',
       controller: function ($scope) {
-        console.log("$scope", $scope);
+        //console.log("$scope", $scope);
       },
       link: ($scope) => {
-
         $scope.isAuth = {
           value: function () {
             return $auth.isAuthenticated();

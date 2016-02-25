@@ -17,7 +17,6 @@ module login {
       var self = this;
       return this.$auth.authenticate(provider)
         .then((response) => {
-          console.log("this.$auth.isAuthenticated()", this.$auth.isAuthenticated());
           self.Restangular.setDefaultHeaders({token: response.data.token});
         })
     }
@@ -30,6 +29,10 @@ module login {
         .catch(function (response) {
           console.log("logout catch", response);
         });
+    }
+
+    isAuthenticated() {
+      return this.$auth.isAuthenticated();
     }
 
     getUser() {

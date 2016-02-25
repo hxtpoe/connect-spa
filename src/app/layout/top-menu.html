@@ -17,9 +17,18 @@
       <ul class="navbar-right">
         <li class="clickable" ng-click="logout()" ng-show="isAuth.value()"><a>Wyloguj</a></li>
         <li class="clickable" ng-show="!isAuth.value()"><a data-title="Login" data-controller="LoginCtrl as LoginCtrl"
-                                 data-template-url="app/login/popup-login.html" data-container="body"
-                                 data-animation="am-fade-and-scale"
-                                 bs-modal="modal"><i class="glyphicon glyphicon-registration-mark"></i> Login /
+                                                           data-template-url="app/login/popup-login.html"
+                                                           data-container="body"
+                                                           data-animation="am-fade-and-scale"
+                                                           bs-modal="modal"><i
+          class="glyphicon glyphicon-registration-mark"></i> Zaloguj się
+        </a></li>
+        <li class="clickable" ng-show="!isAuth.value()"><a data-title="Login" data-controller="LoginCtrl as LoginCtrl"
+                                                           data-template-url="app/login/registration-popup.html"
+                                                           data-container="body"
+                                                           data-animation="am-fade-and-scale"
+                                                           bs-modal="modal"><i
+          class="glyphicon glyphicon-registration-mark"></i>
           Rejestracja</a></li>
       </ul>
     </div><!--/.nav-collapse -->
