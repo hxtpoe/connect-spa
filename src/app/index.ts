@@ -21,6 +21,7 @@ module app {
       'loginModule',
       'mainModule',
       'wallModule',
+      'profileModule',
       'layoutModule'
     ])
     .config(function ($authProvider) {
@@ -44,6 +45,14 @@ module app {
           url: '/wall',
           templateUrl: 'app/wall/wall.html',
           controller: 'WallCtrl as wallCtrl',
+          data: {
+            requireLogin: true
+          }
+        })
+        .state('profile', {
+          url: '/profile/:userId',
+          templateUrl: 'app/profile/profile.html',
+          controller: 'ProfileCtrl as profileCtrl',
           data: {
             requireLogin: true
           }

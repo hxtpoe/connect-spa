@@ -10,7 +10,7 @@ module layout {
     layoutModule = angular.module(moduleName, [])
       .controller('LayoutCtrl', LayoutCtrl)
       .directive('topNav', ($auth) => {
-        return new TopNavDrv($auth);
+        return TopNavDrv($auth);
       })
     ;
 }

@@ -1,6 +1,6 @@
 ///<reference path='_all.ts' />
 module layout {
-  export function TopNavDrv($auth):ng.IDirective {
+  export function TopNavDrv($auth) {
     return {
       templateUrl: 'app/layout/top-menu.html',
       controller: function ($scope) {

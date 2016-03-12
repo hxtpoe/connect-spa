@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>Profile</h2>
+
+  <div class="timeline-container row">
+    <div ng-repeat="element in profileCtrl.getPosts">
+      <social-module-post data-message="element.message" data-user-id="element.userId"
+                          data-created-at="element.createdAt"></social-module-post>
+    </div>
+  </div>
+
+  <div class="next-page-container row text-center">
+    <button ng-class="{'disabled' : profileCtrl.endOfTimeline}" class="btn btn-default"
+            ng-click="profileCtrl.getNextPage()">poprzednie
+    </button>
+    <span ng-if="profileCtrl.endOfTimeline">
+    To jest już koniec, nie ma już nic!
+  </span>
+  </div>
+</div>

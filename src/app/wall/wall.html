@@ -2,7 +2,9 @@
   <div class="add-post-container row">
     <form novalidate class="form-inline">
       <div class="form-group">
-        <input type="text" class="form-control" required ng-model="wallCtrl.message" placeholder="Napisz coś!"/>
+
+        <textarea required ng-model="wallCtrl.message"></textarea>
+
         <button ng-class="{'disabled' : !wallCtrl.message}" class="btn btn-success"
                 ng-click="wallCtrl.publish()">Opublikuj
         </button>
@@ -11,11 +13,9 @@
   </div>
 
   <div class="timeline-container row">
-    <div ng-repeat="element in wallCtrl.getPosts" class="well well-lg">
-      <p>{{::element.userId }} {{:: element.createdAt | date : "shortDate" }} {{:: element.createdAt | date :
-        "mediumTime" }}</p>
-
-      <p>{{::element.message }}</p>
+    <div ng-repeat="element in wallCtrl.getPosts">
+      <social-module-post data-message="element.message" data-user-id="element.userId"
+                          data-created-at="element.createdAt"></social-module-post>
     </div>
   </div>
   <div class="next-page-container row text-center">
