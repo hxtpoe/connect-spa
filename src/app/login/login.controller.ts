@@ -7,10 +7,11 @@ module login {
 
     public static $inject = [
       '$scope',
-      'LoginService'
+      'LoginService',
+      '$state'
     ];
 
-    constructor(private $scope, public loginService:LoginService) {
+    constructor(private $scope, public loginService:LoginService, private $state) {
     }
 
     authenticate = function (provider) {
@@ -20,6 +21,7 @@ module login {
       }).
       then(() => {
           this.$scope.$parent.$hide();
+          this.$state.go('wall')
         }
       );
     };

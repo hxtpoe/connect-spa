@@ -8,6 +8,7 @@
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
+  background-color: #F3F3F3;
 }
 
 a {
@@ -110,8 +111,25 @@ hr {
 }
 
 .add-post-container {
-  margin-top: 20px;
   margin-bottom: 40px;
+  width: 100%;
+
+  .form-group {
+    width: 100%;
+  }
+
+  textarea {
+    background-color: #ffffff;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+    border-radius: 2px;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    height: 60px;
+  }
+
 }
 
 .next-page-container {
@@ -126,7 +144,7 @@ hr {
 }
 
 
-.post-view {
+@mixin card() {
   background-color: #ffffff;
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -134,13 +152,31 @@ hr {
   border-radius: 2px;
   margin-bottom: 32px;
   padding: 10px;
+}
+
+.user-profile-box {
+  @include card();
+}
+
+
+.post-view {
+  @include card();
 
   &__author {
     font-weight: bold;
+    font-size: 18px;
+  }
 
+  &__body {
+    font-size: 18px;
   }
 
   &__date {
     color: #5d5d5d;
+    font-size: 12px;
   }
+}
+
+.btn {
+  border-radius: 0;
 }

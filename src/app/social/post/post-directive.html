@@ -1,7 +1,8 @@
 <article class="post-view">
   <div class="post-view__header">
-    <div class="post-view__author" >
-      <span class="clickable" ng-click="postvm.postUserClickHandler(postvm.userId)">{{:: postvm.userId}}</span>
+    <div class="post-view__author">
+      <span class="clickable" ng-click="postvm.postUserClickHandler(postvm.userId)"><span
+        class="glyphicon glyphicon-user" aria-hidden="true"></span> {{:: postvm.userId}}</span>
     </div>
     <span class="post-view__date">
       {{:: postvm.createdAt | date : "shortDate" }} {{:: postvm.createdAt | date : "mediumTime" }}</span>
