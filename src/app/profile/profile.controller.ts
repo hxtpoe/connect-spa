@@ -1,30 +1,32 @@
 ///<reference path='_all.ts' />
-module wall {
-  'use strict';
+module profile {
   import PostModel = socialModule.PostModel;
+  'use strict';
 
-  export class WallCtrl {
-
+  export class ProfileCtrl {
     public static $inject = [
       '$scope',
-      'socialModule.WallDataService',
+      'socialModule.PostsDataService',
       '$auth',
       '$window',
-      '$http'
+      '$http',
+      '$stateParams'
     ];
 
-    private tweet:string = "O czym teraz myślisz?";
+    private tweet:string;
     private posts:Array<PostModel> = [];
     private nextPage:string;
     private endOfTimeline:Boolean = false;
 
-    constructor(private $scope, private WallDataService, private $auth, private $window, private $http, private $filter) {
-      this.WallDataService.getByName().then((data) => {
+    constructor(private $scope, private PostsDataService, private $auth, private $window, private $http, private $stateParams) {
+      this.PostsDataService.getByUserId($stateParams.userId).then((data) => {
         this.posts = data.posts;
         this.posts.forEach((post) => {
           post.createdAt = new Date(post.createdAt).getTime();
         });
         this.nextPage = data.nextPage;
+
+        console.log("$stateParams", $stateParams.userId);
       });
     }
 
@@ -56,16 +58,6 @@ module wall {
 
     get getPosts() {
       return this.posts;
-    }
-
-    publish() {
-      this.WallDataService.add({message: this.message}).then(
-        () => {
-          console.log("this.posts", this.posts);
-          this.posts.unshift({message: this.message, createdAt: null, userId: this.$auth.getPayload().sub});
-          this.message = null;
-        }
-      );
     }
   }
 }

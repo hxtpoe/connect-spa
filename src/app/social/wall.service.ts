@@ -1,7 +1,7 @@
 ///<reference path='_all.ts' />
 ///<reference path='../login/login.service.ts' />
 
-module wall {
+module socialModule {
   'use strict';
 
   export class WallDataService {
@@ -16,7 +16,7 @@ module wall {
       'LoginService'
     ];
 
-    constructor (private restangular, private $auth, public loginService: login.LoginService) {
+    constructor(private restangular, private $auth, public loginService:login.LoginService) {
       this.allTweets = restangular.one('user/' + this.loginService.getUserId() + '/timeline');
       this.create = restangular.all('user/' + this.loginService.getUserId() + '/posts');
     }
@@ -30,7 +30,7 @@ module wall {
     }
 
     add(element) {
-      return this.create.post({ message: element.message, t: "tweet", author: element.author });
+      return this.create.post({message: element.message, t: "tweet", author: element.author});
     }
   }
 }

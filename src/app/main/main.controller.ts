@@ -8,7 +8,7 @@ module main {
       '$http'
     ];
 
-    public numberOfUsers:Int;
+    public numberOfUsers:number;
 
     constructor(private $scope, private $http) {
       this.init();
@@ -18,10 +18,10 @@ module main {
       this.$http.get('http://localhost:9000/api/users/count').then((data) => {
         this.numberOfUsers = data.data.count;
       });
-    };
+    }
 
     init() {
       this.getNumberOfUsers();
-    };
+    }
   }
 }

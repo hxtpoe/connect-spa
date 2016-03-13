@@ -7,6 +7,7 @@
 
 body {
   margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -120,6 +121,26 @@ hr {
 
 .popup-login {
   &__body {
-    padding: 50px;
+    padding: 80px;
+  }
+}
+
+
+.post-view {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+  border-radius: 2px;
+  margin-bottom: 32px;
+  padding: 10px;
+
+  &__author {
+    font-weight: bold;
+
+  }
+
+  &__date {
+    color: #5d5d5d;
   }
 }

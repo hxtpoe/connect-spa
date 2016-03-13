@@ -5,6 +5,7 @@
  @type {angular.Module}
  */
 module app {
+  import LoginService = login.LoginService;
   'use strict';
 
   angular.module('connect', [
@@ -20,6 +21,7 @@ module app {
       'loginModule',
       'mainModule',
       'wallModule',
+      'profileModule',
       'layoutModule'
     ])
     .config(function ($authProvider) {
@@ -42,11 +44,38 @@ module app {
         .state('wall', {
           url: '/wall',
           templateUrl: 'app/wall/wall.html',
-          controller: 'WallCtrl as wallCtrl'
+          controller: 'WallCtrl as wallCtrl',
+          data: {
+            requireLogin: true
+          }
+        })
+        .state('profile', {
+          url: '/profile/:userId',
+          templateUrl: 'app/profile/profile.html',
+          controller: 'ProfileCtrl as profileCtrl',
+          data: {
+            requireLogin: true
+          }
         });
       $urlRouterProvider.otherwise('/');
     })
     .config(function (RestangularProvider:restangular.IProvider) {
       RestangularProvider.setBaseUrl('http://localhost:9000/api/');
+    })
+    .run(function ($rootScope, LoginService, $state) {
+
+      $rootScope.$on('$stateChangeStart', function (event, toState) {
+        var requireLogin = false;
+        try {
+          requireLogin = toState.data.requireLogin;
+        } catch (e) {
+        }
+
+        if (requireLogin && !LoginService.isAuthenticated()) {
+          event.preventDefault();
+          $state.go('home')
+        }
+      });
+
     });
 }

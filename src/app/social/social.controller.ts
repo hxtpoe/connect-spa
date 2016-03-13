@@ -1,19 +1,18 @@
 ///<reference path='_all.ts' />
 module wall {
-  'use strict';
   import PostModel = socialModule.PostModel;
+  'use strict';
 
-  export class WallCtrl {
-
+  export class SocialCtrl {
     public static $inject = [
       '$scope',
-      'socialModule.WallDataService',
+      'WallDataService',
       '$auth',
       '$window',
       '$http'
     ];
 
-    private tweet:string = "O czym teraz myślisz?";
+    private tweet:string;
     private posts:Array<PostModel> = [];
     private nextPage:string;
     private endOfTimeline:Boolean = false;
@@ -61,8 +60,8 @@ module wall {
     publish() {
       this.WallDataService.add({message: this.message}).then(
         () => {
-          console.log("this.posts", this.posts);
-          this.posts.unshift({message: this.message, createdAt: null, userId: this.$auth.getPayload().sub});
+          //console.log("this.posts", this.posts);
+          this.posts.unshift({message: this.message,  createdAt: null, userId: this.$auth.getPayload().sub});
           this.message = null;
         }
       );
