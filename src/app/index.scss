@@ -9,6 +9,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   background-color: #F3F3F3;
+  font-size: 16px;
 }
 
 a {
@@ -121,8 +122,8 @@ hr {
   textarea {
     background-color: #ffffff;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.12);
     border-radius: 2px;
     padding: 10px;
     width: 100%;
@@ -143,12 +144,11 @@ hr {
   }
 }
 
-
 @mixin card() {
   background-color: #ffffff;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
   margin-bottom: 32px;
   padding: 10px;
@@ -158,17 +158,27 @@ hr {
   @include card();
 }
 
-
 .post-view {
   @include card();
 
+  &__header {
+    height: 45px;
+  }
+
   &__author {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 0.9em;
   }
 
   &__body {
-    font-size: 18px;
+    font-size: 1em;
+  }
+
+  &__avatar {
+    float: left;
+    font-size: 39px;
+    line-height: 36px;
+    margin-right: 8px;
   }
 
   &__date {

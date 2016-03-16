@@ -3,11 +3,15 @@
 /**
  * @type {angular.Module}
  */
-module profile {
+module profileModule {
   'use strict';
 
   var moduleName = 'profileModule',
     profileModule = angular.module(moduleName, ['socialModule'])
-      .controller('ProfileCtrl', profile.ProfileCtrl)
+      .controller('ProfileCtrl', ProfileCtrl)
+      .service(moduleName + '.UserProfileData', UserProfileDataProviderService)
+      .directive(moduleName + 'Profile', () => {
+        return ProfileDrv();
+      })
     ;
 }

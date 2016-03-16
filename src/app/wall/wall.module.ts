@@ -7,7 +7,7 @@ module wall {
   'use strict';
 
   var moduleName = 'wallModule',
-    wallModule = angular.module(moduleName, ['socialModule'])
+    wallModule = angular.module(moduleName, ['profileModule'])
       .controller('WallCtrl', WallCtrl)
     ;
 }

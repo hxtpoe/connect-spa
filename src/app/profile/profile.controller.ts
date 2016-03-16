@@ -1,5 +1,5 @@
 ///<reference path='_all.ts' />
-module profile {
+module profileModule {
   import PostModel = socialModule.PostModel;
   'use strict';
 
