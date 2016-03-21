@@ -10,6 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: #F3F3F3;
   font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 a {
@@ -24,11 +25,23 @@ a {
   padding-right: 15px;
 }
 
+
+.navbar-brand {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.connect.navbar-inverse {
+  font-family: 'Open Sans', sans-serif;
+  background-image: linear-gradient(to bottom,#0d2840 0,#0d2840 100%);
+}
+
 .navbar {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
   background-color: #222;
+
 
   & > a {
     float: left;

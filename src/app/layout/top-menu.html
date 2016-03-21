@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="connect navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -8,11 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#/wall">UAMconnect</a>
+      <a class="navbar-brand" ui-sref="wall" href="#">UAMconnect</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li ng-show="isAuth.value()"><a href="#/wall">Wall</a></li>
+        <li ng-show="isAuth.value()"><a ui-sref="wall" href="#">Wall</a></li>
       </ul>
       <ul class="navbar-right">
         <li class="clickable" ng-click="logout()" ng-show="isAuth.value()"><a>Wyloguj</a></li>
