@@ -6,9 +6,11 @@ var util = require('util');
 
 var browserSync = require('browser-sync');
 
-var middleware = require('./proxy');
+var proxy = require('./proxy');
 
 var ts = require('gulp-typescript');
+
+var modRewrite  = require('connect-modrewrite');
 
 function browserSyncInit(baseDir, files, browser) {
   browser = browser === undefined ? 'default' : browser;
@@ -22,19 +24,17 @@ function browserSyncInit(baseDir, files, browser) {
     };
   }
 
-  console.log(files);
-  console.log(baseDir);
-
   browserSync.instance = browserSync.init(files, {
     startPath: '/index.html',
     server: {
       baseDir: baseDir,
-      middleware: middleware,
+      middleware: [modRewrite([
+        '!\\.\\w+$ /index.html [L]'
+      ])],
       routes: routes
     },
     browser: browser
   });
-
 }
 
 gulp.task('serve', ['watch'], function () {

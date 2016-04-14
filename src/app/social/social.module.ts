@@ -11,6 +11,6 @@ module socialModule {
       .service(moduleName + '.WallDataService', WallDataService)
       .service(moduleName + '.PostsDataService', PostsDataService)
       .directive(moduleName + 'Post', () => {
-        return  PostDirective();
+        return PostDirective();
       });
 }

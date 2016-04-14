@@ -13,7 +13,7 @@ module wall {
       '$http'
     ];
 
-    private tweet:string = "O czym teraz myślisz?";
+    private tweet:string = "";
     private posts:Array<PostModel> = [];
     private nextPage:string;
     private endOfTimeline:Boolean = false;

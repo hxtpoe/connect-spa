@@ -1,29 +1,53 @@
 <div class="container">
-  <div class="add-post-container row">
-    <form novalidate class="form-inline">
-      <div class="form-group">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="add-post-container">
+        <form novalidaste class="form-inline">
+          <div class="form-group">
 
-        <textarea required ng-model="wallCtrl.message"></textarea>
+            <textarea required ng-model="wallCtrl.message"></textarea>
 
-        <button ng-class="{'disabled' : !wallCtrl.message}" class="btn btn-success"
-                ng-click="wallCtrl.publish()">Opublikuj
-        </button>
+            <button ng-class="{'disabled' : !wallCtrl.message}" class="btn btn-success pull-right"
+                    ng-click="wallCtrl.publish()">Opublikuj
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
 
-  <div class="timeline-container row">
-    <div ng-repeat="element in wallCtrl.getPosts">
-      <social-module-post data-message="element.message" data-user-id="element.userId"
-                          data-created-at="element.createdAt"></social-module-post>
+      <div class="timeline-container">
+        <div ng-repeat="element in wallCtrl.getPosts">
+          <social-module-post data-message="element.message"
+                              data-user-id="element.userId"
+                              data-created-at="element.createdAt"
+                              data-user="element.user"></social-module-post>
+        </div>
+      </div>
+      <div class="next-page-container  text-center">
+        <button ng-class="{'disabled' : wallCtrl.endOfTimeline}" class="btn btn-default"
+                ng-click="wallCtrl.getNextPage()">poprzednie
+        </button>
+        <span ng-if="wallCtrl.endOfTimeline">To jest już koniec, nie ma już nic!</span>
+      </div>
     </div>
-  </div>
-  <div class="next-page-container row text-center">
-    <button ng-class="{'disabled' : wallCtrl.endOfTimeline}" class="btn btn-default"
-            ng-click="wallCtrl.getNextPage()">poprzednie
-    </button>
-    <span ng-if="wallCtrl.endOfTimeline">
-    To jest już koniec, nie ma już nic!
-  </span>
+    <div class="col-md-4">
+      <div class="user-profile-box">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+        a
+        type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
+      </div>
+      <div class="user-profile-box">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+        a
+        type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
+      </div>
+    </div>
   </div>
 </div>

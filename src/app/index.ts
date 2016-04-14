@@ -59,8 +59,9 @@ module app {
         });
       $urlRouterProvider.otherwise('/');
     })
-    .config(function (RestangularProvider:restangular.IProvider) {
+    .config(function (RestangularProvider:restangular.IProvider, $locationProvider) {
       RestangularProvider.setBaseUrl('http://localhost:9000/api/');
+      $locationProvider.html5Mode(true);
     })
     .run(function ($rootScope, LoginService, $state) {
 

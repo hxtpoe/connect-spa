@@ -5,7 +5,8 @@ module socialModule {
       scope: {
         message: '=',
         userId: '=',
-        createdAt: '='
+        createdAt: '=',
+        user: '='
       },
       templateUrl: 'app/social/post/post-directive.html',
       controllerAs: 'postvm',
@@ -15,7 +16,6 @@ module socialModule {
         }
       },
       bindToController: true,
-
     }
   }
 }

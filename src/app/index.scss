@@ -8,6 +8,9 @@
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
+  background-color: #F3F3F3;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 a {
@@ -22,11 +25,23 @@ a {
   padding-right: 15px;
 }
 
+
+.navbar-brand {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.connect.navbar-inverse {
+  font-family: 'Open Sans', sans-serif;
+  background-image: linear-gradient(to bottom,#0d2840 0,#0d2840 100%);
+}
+
 .navbar {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
   background-color: #222;
+
 
   & > a {
     float: left;
@@ -110,8 +125,25 @@ hr {
 }
 
 .add-post-container {
-  margin-top: 20px;
   margin-bottom: 40px;
+  width: 100%;
+
+  .form-group {
+    width: 100%;
+  }
+
+  textarea {
+    background-color: #ffffff;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    height: 60px;
+  }
+
 }
 
 .next-page-container {
@@ -125,22 +157,49 @@ hr {
   }
 }
 
-
-.post-view {
+@mixin card() {
   background-color: #ffffff;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
   margin-bottom: 32px;
   padding: 10px;
+}
+
+.user-profile-box {
+  @include card();
+}
+
+.post-view {
+  @include card();
+
+  &__header {
+    height: 45px;
+  }
 
   &__author {
     font-weight: bold;
+    font-size: 0.9em;
+  }
 
+  &__body {
+    font-size: 1em;
+  }
+
+  &__avatar {
+    float: left;
+    font-size: 39px;
+    line-height: 36px;
+    margin-right: 8px;
   }
 
   &__date {
     color: #5d5d5d;
+    font-size: 12px;
   }
+}
+
+.btn {
+  border-radius: 0;
 }
