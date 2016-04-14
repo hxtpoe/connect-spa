@@ -4,8 +4,10 @@
   <div class="timeline-container row">
     <div class="col-md-8">
       <div ng-repeat="element in profileCtrl.getPosts">
-        <social-module-post data-message="element.message" data-user-id="element.userId"
-                            data-created-at="element.createdAt"></social-module-post>
+        <social-module-post data-message="element.message"
+                            data-user-id="element.userId"
+                            data-created-at="element.createdAt"
+                            data-user="element.user"></social-module-post>
       </div>
       <div class="next-page-container  text-center">
         <button ng-class="{'disabled' : profileCtrl.endOfTimeline}" class="btn btn-default"

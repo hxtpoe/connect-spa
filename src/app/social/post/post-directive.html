@@ -6,7 +6,7 @@
          ng-click="postvm.postUserClickHandler(postvm.userId)"></span>
     </div>
     <div class="post-view__author">
-      <span class="clickable" ng-click="postvm.postUserClickHandler(postvm.userId)">{{:: postvm.userId}}</span>
+      <span class="clickable" ng-click="postvm.postUserClickHandler(postvm.userId)">{{:: postvm.user.first_name}}  {{:: postvm.user.last_name}}</span>
     </div>
     <span class="post-view__date">
       {{:: postvm.createdAt | date : "shortDate" }} {{:: postvm.createdAt | date : "mediumTime" }}</span>
