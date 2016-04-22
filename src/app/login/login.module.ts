@@ -7,7 +7,7 @@ module login {
   'use strict';
 
   var moduleName = 'loginModule',
-    loginModule = angular.module(moduleName, [])
+    loginModule = angular.module(moduleName, ['profileModule'])
       .controller('LoginCtrl', LoginCtrl)
       .service('LoginService', LoginService)
     ;

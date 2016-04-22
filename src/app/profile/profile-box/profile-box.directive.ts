@@ -7,12 +7,14 @@ module profileModule {
       },
       templateUrl: 'app/profile/profile-box/profile-box-directive.html',
       controllerAs: 'profileboxvm',
-      controller: ['$scope', 'profileModule.UserProfileData', function ($scope, UserProfileDataProvider) {
-        console.log("$scope.userId", this.userId);
-        UserProfileDataProvider.getProfile().then((data) => {
-          console.log("data", data);
+      controller: ['$scope', 'profileModule.UserProfileData', 'stateModule.UserStateService', function ($scope, UserProfileDataProvider, UserStateService) {
+        UserProfileDataProvider.getProfile(this.userId).then((data) => {
           this.fullProfile = data;
-        })
+        });
+
+        this.isMyFollowee = (userId) => {
+          return UserStateService.isMyFollowee(userId);
+        }
       }],
       bindToController: true
     }

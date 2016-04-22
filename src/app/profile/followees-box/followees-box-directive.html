@@ -1,0 +1,10 @@
+<div class="my-followees-box">
+  <header>
+    <h3>Followees ({{followeesboxvm.numberOfFollowees}})</h3>
+  </header>
+  <section>
+    <div ng-repeat="(userId, user) in followeesboxvm.followees">
+      <a ng-click="followeesboxvm.usernameClickHandler(userId)"> {{ user.first_name }} {{ user.last_name }}</a>
+    </div>
+  </section>
+</div>

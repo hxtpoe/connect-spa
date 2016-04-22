@@ -1,3 +1,16 @@
+@import 'typography';
+
+$primary: #004346;
+$nav-bar-font-color: #fff;
+$secondary: #01D6E1;
+
+// overide bootstrap
+
+.h1, .h2, .h3, h1, h2, h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -8,9 +21,8 @@
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
-  background-color: #F3F3F3;
-  font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
+  background-color: #F9F9F9;
+  font-size: $font-size-base;
 }
 
 a {
@@ -25,15 +37,20 @@ a {
   padding-right: 15px;
 }
 
-
-.navbar-brand {
-  font-family: 'Open Sans', sans-serif;
+.navbar-inverse .navbar-brand {
+  font-family: $font-family;
   font-weight: 600;
+  color: $nav-bar-font-color;
 }
 
 .connect.navbar-inverse {
-  font-family: 'Open Sans', sans-serif;
-  background-image: linear-gradient(to bottom,#0d2840 0,#0d2840 100%);
+  font-family: $font-family;
+  font-weight: 600;
+  background-image: linear-gradient(to bottom, $primary 0, $primary 100%);
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: $nav-bar-font-color;
 }
 
 .navbar {
@@ -41,11 +58,16 @@ a {
   min-height: 50px;
   margin-bottom: 20px;
   background-color: #222;
+  border: 0;
 
+  &__separator {
+    padding: 5px;
+    padding-top: 13px;
+  }
 
   & > a {
     float: left;
-    color: lightgrey;
+    color: $secondary;
     padding: 15px 15px;
     font-size: 18px;
     line-height: 20px;
@@ -61,10 +83,12 @@ a {
       float: left;
       position: relative;
       display: block;
+      color: $nav-bar-font-color;
 
       a {
-        color: white;
+        color: $nav-bar-font-color;
         position: relative;
+        text-decoration: none;
         display: block;
         padding: 15px;
         line-height: 20px;
@@ -73,6 +97,11 @@ a {
         background-color: black;
       }
     }
+  }
+
+  &__avatar {
+    color: $nav-bar-font-color;
+    padding-top: 16px;
   }
 }
 
@@ -140,6 +169,7 @@ hr {
     border-radius: 2px;
     padding: 10px;
     width: 100%;
+    border: 0;
     outline: none;
     height: 60px;
   }
@@ -149,6 +179,11 @@ hr {
 .next-page-container {
   margin-top: 40px;
   margin-bottom: 40px;
+
+  &__message-box {
+    padding: 15px;
+    font-size: 14px;
+  }
 }
 
 .popup-login {
@@ -165,10 +200,15 @@ hr {
   border-radius: 2px;
   margin-bottom: 32px;
   padding: 10px;
+  color: $primary;
 }
 
 .user-profile-box {
   @include card();
+
+  h3 {
+    @include typo-h3();
+  }
 }
 
 .post-view {
@@ -198,8 +238,68 @@ hr {
     color: #5d5d5d;
     font-size: 12px;
   }
+
+  color: $primary;
 }
 
 .btn {
   border-radius: 0;
+}
+
+.profile-box {
+  h1 {
+    @include typo-h1();
+    color: $primary;
+  }
+}
+
+.my-followees-box {
+  @include card();
+
+  h3 {
+    @include typo-h3();
+    color: $primary;
+  }
+}
+
+a {
+  cursor: pointer;
+}
+
+.my-btn {
+  min-width: 80px;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.my-btn-primary {
+  background-color: $secondary;
+  color: white;
+
+  &:hover {
+    background-color: #008189;
+    color: white;
+  }
+
+  &:focus {
+    color: white;
+  }
+}
+
+.my-btn-secondary {
+  background-color: $primary;
+  color: white;
+
+  &:hover {
+    background-color: #008189;
+    color: white;
+  }
+
+  &:focus {
+    color: white;
+  }
 }

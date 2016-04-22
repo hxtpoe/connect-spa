@@ -1,22 +1,32 @@
 ///<reference path='_all.ts' />
 module layout {
-  export function TopNavDrv($auth) {
+  //import LoginService = LoginService;
+  export function TopNavDrv() {
     return {
       templateUrl: 'app/layout/top-menu.html',
-      controller: function ($scope) {
-        //console.log("$scope", $scope);
-      },
-      link: ($scope) => {
-        $scope.isAuth = {
-          value: function () {
-            return $auth.isAuthenticated();
-          }
-        }
+      bindToController: true,
+      controllerAs: 'topnavvm',
+      controller: ['$scope', 'LoginService', '$state', 'stateModule.UserStateService', function ($scope, LoginService, $state, UserStateService) {
+        this.profileClickHandler = () => {
+          $state.go('profile', {userId: LoginService.getUserId()});
+        };
 
-        $scope.logout = () => {
-          return $auth.logout(); // inject login service instead of $auth
-        }
-      }
+        this.isAuth = {
+          value: function () {
+            return LoginService.isAuthenticated();
+          }
+        };
+
+        this.username = () => {
+          if (UserStateService.profile) {
+            return UserStateService.profile.first_name + ' ' + UserStateService.profile.last_name;
+          }
+        };
+
+        this.logout = () => {
+          return LoginService.logout(); // inject login service instead of $auth
+        };
+      }],
     }
   }
 }
