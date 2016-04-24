@@ -8,11 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" ui-sref="wall" href="#">UAMconnect</a>
+      <a class="navbar-brand" ng-click="topnavvm.logoClickHandler()" href="#">UAMconnect</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li ng-show="topnavvm.isAuth.value()"><a ui-sref="wall" href="#">Wall</a></li>
+        <li ng-show="topnavvm.isAuth.value()"><a ng-click="topnavvm.wallClickHandler()" href="#">Wall</a></li>
       </ul>
       <ul class="navbar-right">
         <li ng-click="topnavvm.profileClickHandler()" ng-show="topnavvm.isAuth.value()">

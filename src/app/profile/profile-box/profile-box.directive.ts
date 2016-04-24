@@ -15,6 +15,22 @@ module profileModule {
         this.isMyFollowee = (userId) => {
           return UserStateService.isMyFollowee(userId);
         }
+
+        this.canBeMyFollowee = (userId) => {
+          return UserStateService.canBeMyFollowee(userId);
+        }
+
+        this.followClickHandler = (foloweeUserId) => {
+          UserProfileDataProvider.follow(UserStateService.authenticatedUserId, foloweeUserId);
+          UserStateService.reloadProfile();
+          // @ToDo fix binding
+        };
+
+        this.unfollowClickHandler = (foloweeUserId) => {
+          UserProfileDataProvider.unfollow(UserStateService.authenticatedUserId, foloweeUserId);
+          UserStateService.reloadProfile();
+          // @ToDo fix binding
+        };
       }],
       bindToController: true
     }

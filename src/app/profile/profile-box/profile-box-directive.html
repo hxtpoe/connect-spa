@@ -4,10 +4,10 @@
       {{profileboxvm.fullProfile.first_name}}
       {{profileboxvm.fullProfile.last_name}}
     </h3>
-    <div ng-if="!profileboxvm.isMyFollowee(profileboxvm.userId)" ng-click="profileboxvm.unfollowClickHandler(profileboxvm.userId)" class="clickable">
+    <div ng-if="profileboxvm.canBeMyFollowee(profileboxvm.userId) && !profileboxvm.isMyFollowee(profileboxvm.userId)" ng-click="profileboxvm.followClickHandler(profileboxvm.userId)" class="clickable">
       <span class="glyphicon glyphicon-eye-open"></span> follow
     </div>
-    <div ng-if="profileboxvm.isMyFollowee(profileboxvm.userId)" ng-click="profileboxvm.followClickHandler(profileboxvm.userId)"  class="clickable">
+    <div ng-if="profileboxvm.canBeMyFollowee(profileboxvm.userId) && profileboxvm.isMyFollowee(profileboxvm.userId)" ng-click="profileboxvm.unfollowClickHandler(profileboxvm.userId)"  class="clickable">
       <span class="glyphicon glyphicon-eye-close"></span> unfollow
     </div>
 

@@ -23,5 +23,13 @@ module profileModule {
     getFollowees(userId:number) {
       return this.restangular.one('user', userId).one('followees').get();
     }
+
+    follow(userId:number, foloweeUserId:number) {
+        return this.restangular.one('user', userId).one('follow', foloweeUserId).put();
+    }
+
+    unfollow(userId:number, foloweeUserId:number) {
+      return this.restangular.one('user', userId).one('follow', foloweeUserId).remove();
+    }
   }
 }

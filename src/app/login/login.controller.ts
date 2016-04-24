@@ -24,9 +24,9 @@ module login {
         console.log("authenticate exception", response);
       }).
       then(() => {
-          console.log("UserStateService", this.UserStateService);
           this.ProfileDataProvider.getExtendedProfile( this.loginService.getUserId()).then((responseData) => {
             this.UserStateService.profile = responseData.plain();
+            this.UserStateService.authenticatedUserId = this.loginService.getUserId();
           });
 
           this.$scope.$parent.$hide();

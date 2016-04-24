@@ -1,8 +1,8 @@
 @import 'typography';
 
-$primary: #004346;
+$primary: #485556;
 $nav-bar-font-color: #fff;
-$secondary: #01D6E1;
+$secondary: #7C7C7C;
 
 // overide bootstrap
 
@@ -21,7 +21,7 @@ $secondary: #01D6E1;
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
-  background-color: #F9F9F9;
+  background-color: #E8E8E8;
   font-size: $font-size-base;
 }
 
@@ -267,11 +267,11 @@ a {
 }
 
 .my-btn {
-  min-width: 80px;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  min-width: 90px;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
   font-weight: 600;
   font-size: 1em;
 }
@@ -279,6 +279,10 @@ a {
 .my-btn-primary {
   background-color: $secondary;
   color: white;
+
+  i {
+    color: #D2D2D2;
+  }
 
   &:hover {
     background-color: #008189;
