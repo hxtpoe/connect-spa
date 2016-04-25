@@ -61,7 +61,6 @@ module wall {
     publish() {
       this.WallDataService.add({message: this.message}).then(
         () => {
-          console.log("this.posts", this.posts);
           this.posts.unshift({message: this.message, createdAt: null, userId: this.$auth.getPayload().sub});
           this.message = null;
         }

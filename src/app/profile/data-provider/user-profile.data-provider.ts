@@ -5,19 +5,31 @@ module profileModule {
 
   export class UserProfileDataProviderService {
 
-    private profile;
-
     public static $inject = [
       'Restangular'
     ];
 
     constructor(private restangular) {
-      this.profile = restangular.one('user/1');
     }
 
-    getProfile() {
-      return this.profile.get();
+    getProfile(userId:number) {
+      return this.restangular.one('user', userId).get();
     }
 
+    getExtendedProfile(userId:number) {
+      return this.restangular.one('user', userId).one('extendedProfile').get();
+    }
+
+    getFollowees(userId:number) {
+      return this.restangular.one('user', userId).one('followees').get();
+    }
+
+    follow(userId:number, foloweeUserId:number) {
+        return this.restangular.one('user', userId).one('follow', foloweeUserId).put();
+    }
+
+    unfollow(userId:number, foloweeUserId:number) {
+      return this.restangular.one('user', userId).one('follow', foloweeUserId).remove();
+    }
   }
 }

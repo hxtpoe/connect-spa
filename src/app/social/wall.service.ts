@@ -13,12 +13,12 @@ module socialModule {
     public static $inject = [
       'Restangular',
       '$auth',
-      'LoginService'
+      'stateModule.UserStateService'
     ];
 
-    constructor(private restangular, private $auth, public loginService:login.LoginService) {
-      this.allTweets = restangular.one('user/' + this.loginService.getUserId() + '/timeline');
-      this.create = restangular.all('user/' + this.loginService.getUserId() + '/posts');
+    constructor(private restangular, private $auth, public UserStateService) {
+      this.allTweets = restangular.one('user/' + this.UserStateService.authenticatedUserId + '/timeline');
+      this.create = restangular.all('user/' + this.UserStateService.authenticatedUserId + '/posts');
     }
 
     getLatests() {

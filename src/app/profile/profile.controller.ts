@@ -8,7 +8,6 @@ module profileModule {
       '$scope',
       'socialModule.PostsDataService',
       '$auth',
-      '$window',
       '$http',
       '$stateParams'
     ];
@@ -17,8 +16,9 @@ module profileModule {
     private posts:Array<PostModel> = [];
     private nextPage:string;
     private endOfTimeline:Boolean = false;
+    private currentProfileId:number;
 
-    constructor(private $scope, private PostsDataService, private $auth, private $window, private $http, private $stateParams) {
+    constructor(private $scope, private PostsDataService, private $auth,  private $http, private $stateParams) {
       this.PostsDataService.getByUserId($stateParams.userId).then((data) => {
         this.posts = data.posts;
         this.posts.forEach((post) => {
@@ -26,8 +26,8 @@ module profileModule {
         });
         this.nextPage = data.nextPage;
 
-        console.log("$stateParams", $stateParams.userId);
       });
+      this.currentProfileId =  $stateParams.userId;
     }
 
     getNextPage() {

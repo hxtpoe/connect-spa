@@ -1,6 +1,19 @@
 <div class="user-profile-box">
-  <a href="{{profileboxvm.fullProfile.link}}" target="_blank">{{profileboxvm.fullProfile.first_name}}
-    {{profileboxvm.fullProfile.last_name}}</a>
+  <header>
+    <h3>
+      {{profileboxvm.fullProfile.first_name}}
+      {{profileboxvm.fullProfile.last_name}}
+    </h3>
+    <div ng-if="profileboxvm.canBeMyFollowee(profileboxvm.userId) && !profileboxvm.isMyFollowee(profileboxvm.userId)" ng-click="profileboxvm.followClickHandler(profileboxvm.userId)" class="clickable">
+      <span class="glyphicon glyphicon-eye-open"></span> follow
+    </div>
+    <div ng-if="profileboxvm.canBeMyFollowee(profileboxvm.userId) && profileboxvm.isMyFollowee(profileboxvm.userId)" ng-click="profileboxvm.unfollowClickHandler(profileboxvm.userId)"  class="clickable">
+      <span class="glyphicon glyphicon-eye-close"></span> unfollow
+    </div>
+
+  </header>
+
+  <a href="{{profileboxvm.fullProfile.link}}" target="_blank">Facebook</a>
 
   <p>{{profileboxvm.fullProfile.gender}}</p>
 </div>

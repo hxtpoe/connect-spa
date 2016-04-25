@@ -40,7 +40,7 @@ module login {
     }
 
     getUserId() {
-      return this.$auth.getPayload().sub.substring(6);
+      return this.$auth.getPayload().sub;
     }
   }
 }

@@ -1,5 +1,5 @@
-<div class="container">
-  <h2>Profile</h2>
+<div class="container profile-box">
+  <h1>Profile</h1>
 
   <div class="timeline-container row">
     <div class="col-md-8">
@@ -10,18 +10,22 @@
                             data-user="element.user"></social-module-post>
       </div>
       <div class="next-page-container  text-center">
-        <button ng-class="{'disabled' : profileCtrl.endOfTimeline}" class="btn btn-default"
+        <button ng-class="{'disabled' : profileCtrl.endOfTimeline}" class="btn my-btn my-btn-secondary"
                 ng-click="profileCtrl.getNextPage()">poprzednie
         </button>
-         <span ng-if="profileCtrl.endOfTimeline">
+        <p class="next-page-container__message-box" ng-if="profileCtrl.endOfTimeline">
           To jest już koniec, nie ma już nic!
-          </span>
+        </p>
       </div>
     </div>
 
     <div class="col-md-4">
-      <profile-module-profile data-user-id="22"></profile-module-profile>
+      <profile-module-profile data-user-id="profileCtrl.currentProfileId"></profile-module-profile>
+      <profile-module-my-followees data-user-id="profileCtrl.currentProfileId"></profile-module-my-followees>
       <div class="user-profile-box">
+        <header>
+          <h3>Lorem Ipsum is simply</h3>
+        </header>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
         standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
         a

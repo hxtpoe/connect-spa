@@ -8,26 +8,34 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" ui-sref="wall" href="#">UAMconnect</a>
+      <a class="navbar-brand" ng-click="topnavvm.logoClickHandler()" href="#">UAMconnect</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li ng-show="isAuth.value()"><a ui-sref="wall" href="#">Wall</a></li>
+        <li ng-show="topnavvm.isAuth.value()"><a ng-click="topnavvm.wallClickHandler()" href="#">Wall</a></li>
       </ul>
       <ul class="navbar-right">
-        <li class="clickable" ng-click="logout()" ng-show="isAuth.value()"><a>Wyloguj</a></li>
-        <li class="clickable" ng-show="!isAuth.value()"><a data-title="Login" data-controller="LoginCtrl as LoginCtrl"
-                                                           data-template-url="app/login/popup-login.html"
-                                                           data-container="body"
-                                                           data-animation="am-fade-and-scale"
-                                                           bs-modal="modal"><i
+        <li ng-click="topnavvm.profileClickHandler()" ng-show="topnavvm.isAuth.value()">
+          <span
+            class="glyphicon glyphicon-user clickable navbar__avatar" aria-hidden="true"
+            ng-click="postvm.postUserClickHandler(postvm.userId)"></span> {{ ::topnavvm.username() }}</li>
+        <li class="navbar__separator" ng-show="topnavvm.isAuth.value()">|</li>
+
+        <li class="clickable" ng-click="topnavvm.logout()" ng-show="topnavvm.isAuth.value()"><a href="#"><i class="glyphicon glyphicon-off"></i> Wyloguj</a></li>
+        <li class="clickable" ng-show="!topnavvm.isAuth.value()"><a data-title="Login"
+                                                                    data-controller="LoginCtrl as LoginCtrl"
+                                                                    data-template-url="app/login/popup-login.html"
+                                                                    data-container="body"
+                                                                    data-animation="am-fade-and-scale"
+                                                                    bs-modal="modal"><i
           class="glyphicon glyphicon-registration-mark"></i> Zaloguj się
         </a></li>
-        <li class="clickable" ng-show="!isAuth.value()"><a data-title="Login" data-controller="LoginCtrl as LoginCtrl"
-                                                           data-template-url="app/login/registration-popup.html"
-                                                           data-container="body"
-                                                           data-animation="am-fade-and-scale"
-                                                           bs-modal="modal"><i
+        <li class="clickable" ng-show="!topnavvm.isAuth.value()"><a data-title="Login"
+                                                                    data-controller="LoginCtrl as LoginCtrl"
+                                                                    data-template-url="app/login/registration-popup.html"
+                                                                    data-container="body"
+                                                                    data-animation="am-fade-and-scale"
+                                                                    bs-modal="modal"><i
           class="glyphicon glyphicon-registration-mark"></i>
           Rejestracja</a></li>
       </ul>

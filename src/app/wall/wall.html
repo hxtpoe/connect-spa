@@ -7,8 +7,8 @@
 
             <textarea required ng-model="wallCtrl.message"></textarea>
 
-            <button ng-class="{'disabled' : !wallCtrl.message}" class="btn btn-success pull-right"
-                    ng-click="wallCtrl.publish()">Opublikuj
+            <button ng-class="{'disabled' : !wallCtrl.message}" class="btn my-btn my-btn-primary pull-right"
+                    ng-click="wallCtrl.publish()"><i class="glyphicon glyphicon-share"></i> Opublikuj
             </button>
           </div>
         </form>
@@ -22,11 +22,12 @@
                               data-user="element.user"></social-module-post>
         </div>
       </div>
-      <div class="next-page-container  text-center">
-        <button ng-class="{'disabled' : wallCtrl.endOfTimeline}" class="btn btn-default"
+      <div class="next-page-container text-center">
+        <button ng-class="{'disabled' : wallCtrl.endOfTimeline}" class="btn my-btn my-btn-secondary"
                 ng-click="wallCtrl.getNextPage()">poprzednie
         </button>
-        <span ng-if="wallCtrl.endOfTimeline">To jest już koniec, nie ma już nic!</span>
+        <p class="next-page-container__message-box" ng-if="wallCtrl.endOfTimeline">To jest już koniec, nie ma już
+          nic!</p>
       </div>
     </div>
     <div class="col-md-4">
