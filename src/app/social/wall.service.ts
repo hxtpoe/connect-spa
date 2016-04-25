@@ -12,11 +12,10 @@ module socialModule {
 
     public static $inject = [
       'Restangular',
-      '$auth',
       'stateModule.UserStateService'
     ];
 
-    constructor(private restangular, private $auth, public UserStateService) {
+    constructor(public restangular, public UserStateService) {
       this.allTweets = restangular.one('user/' + this.UserStateService.authenticatedUserId + '/timeline');
       this.create = restangular.all('user/' + this.UserStateService.authenticatedUserId + '/posts');
     }

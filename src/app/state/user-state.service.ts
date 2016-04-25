@@ -20,7 +20,7 @@ module stateModule {
     public isMyFollowee(userId) {
       var followees = this.profile.followees || [];
 
-      return followees.indexOf(String(userId)) > 0;
+      return followees.indexOf(String(userId)) > -1;
     }
 
     public get profile() {
