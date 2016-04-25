@@ -9,8 +9,8 @@ module layout {
   var moduleName = 'layoutModule',
     layoutModule = angular.module(moduleName, [])
       .controller('LayoutCtrl', LayoutCtrl)
-      .directive('topNav', ($auth) => {
-        return TopNavDrv($auth);
+      .directive('topNav', () => {
+        return TopNavDrv();
       })
     ;
 }

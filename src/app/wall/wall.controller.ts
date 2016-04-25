@@ -18,7 +18,7 @@ module wall {
     private nextPage:string;
     private endOfTimeline:Boolean = false;
 
-    constructor(private $scope, private WallDataService, private $auth, private $window, private $http, private $filter) {
+    constructor(private $scope, private WallDataService, private $auth, private $window, private $http) {
       this.WallDataService.getByName().then((data) => {
         this.posts = data.posts;
         this.posts.forEach((post) => {

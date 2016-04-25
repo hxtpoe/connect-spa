@@ -25,12 +25,11 @@ module login {
       }).
       then(() => {
           this.ProfileDataProvider.getExtendedProfile( this.loginService.getUserId()).then((responseData) => {
-            this.UserStateService.profile = responseData.plain();
             this.UserStateService.authenticatedUserId = this.loginService.getUserId();
+            this.UserStateService.profile = responseData.plain();
+            this.$scope.$parent.$hide();
+            this.$state.go('wall')
           });
-
-          this.$scope.$parent.$hide();
-          this.$state.go('wall')
         }
       );
     };
